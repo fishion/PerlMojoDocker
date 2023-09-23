@@ -1,0 +1,1 @@
+requires 'Mojolicious', '9.34'; # or newer
