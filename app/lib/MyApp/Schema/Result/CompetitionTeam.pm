@@ -1,12 +1,12 @@
 use utf8;
-package Model::Schema::Result::CompetitionTeam;
+package MyApp::Schema::Result::CompetitionTeam;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-Model::Schema::Result::CompetitionTeam
+MyApp::Schema::Result::CompetitionTeam
 
 =cut
 
@@ -66,13 +66,13 @@ __PACKAGE__->set_primary_key("competition", "team");
 
 Type: belongs_to
 
-Related object: L<Model::Schema::Result::Competition>
+Related object: L<MyApp::Schema::Result::Competition>
 
 =cut
 
 __PACKAGE__->belongs_to(
   "competition",
-  "Model::Schema::Result::Competition",
+  "MyApp::Schema::Result::Competition",
   { name => "competition" },
   { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
 );
@@ -81,20 +81,20 @@ __PACKAGE__->belongs_to(
 
 Type: belongs_to
 
-Related object: L<Model::Schema::Result::Team>
+Related object: L<MyApp::Schema::Result::Team>
 
 =cut
 
 __PACKAGE__->belongs_to(
   "team",
-  "Model::Schema::Result::Team",
+  "MyApp::Schema::Result::Team",
   { name => "team" },
   { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07051 @ 2023-09-24 19:18:35
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:VPcygj18CFi19Vg4twU49w
+# Created by DBIx::Class::Schema::Loader v0.07051 @ 2023-09-24 22:28:13
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FririIdl3igxFCPD6cxMHA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

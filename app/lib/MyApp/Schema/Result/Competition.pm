@@ -1,12 +1,12 @@
 use utf8;
-package Model::Schema::Result::Competition;
+package MyApp::Schema::Result::Competition;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-Model::Schema::Result::Competition
+MyApp::Schema::Result::Competition
 
 =cut
 
@@ -68,13 +68,13 @@ __PACKAGE__->set_primary_key("name");
 
 Type: has_many
 
-Related object: L<Model::Schema::Result::CompetitionTeam>
+Related object: L<MyApp::Schema::Result::CompetitionTeam>
 
 =cut
 
 __PACKAGE__->has_many(
   "competition_teams",
-  "Model::Schema::Result::CompetitionTeam",
+  "MyApp::Schema::Result::CompetitionTeam",
   { "foreign.competition" => "self.name" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -90,8 +90,8 @@ Composing rels: L</competition_teams> -> team
 __PACKAGE__->many_to_many("teams", "competition_teams", "team");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07051 @ 2023-09-24 19:18:35
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:UBWXxF1XjWmtH24rlWaydQ
+# Created by DBIx::Class::Schema::Loader v0.07051 @ 2023-09-24 22:28:13
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5IoHWRSW73cJaszlhfonaA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
