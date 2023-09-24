@@ -1,9 +1,7 @@
 #!/usr/bin/env perl
 
-use v5.36;
-use strict;
-use warnings;
 use local::lib 'local';
+use Modern::Perl;
 
 use Mojolicious::Lite -signatures;
 
@@ -11,7 +9,7 @@ use Mojolicious::Lite -signatures;
 get '/foo' => sub ($c) {
   my $response = {
     status => 'ok',
-    text => 'hello world'
+    text => 'hello world!'
   };
   $c->render(json => $response);
 };

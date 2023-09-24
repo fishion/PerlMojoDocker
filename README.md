@@ -1,10 +1,9 @@
 # Running Perl Mojo app in Docker
 
-## Building and running container
+## Building container
 
 ```bash
 docker build -t perl-mojo .
-docker run -dp 8080:3000 perl-mojo
 ```
 
 ## Local env setup
@@ -23,11 +22,35 @@ perlbrew switch perl-5.36.1
 
 ```bash
 perlbrew install-cpanm
-cpanm local::lib # needs to install globally
-
+# needs to install globally
+cpanm local::lib 
+# install project libs in local dir
 cpanm -l local --installdeps .
 ```
 
 ### Run app
 
-```./myapp.pl daemon -m production -l http://*:8080```
+```bash
+# create a docker network for application
+docker network create perl-mojo
+
+# start up database 
+docker run --name perl-mojo-postgresql \
+    --network perl-mojo \
+    -p 5432:5432 \
+    -e POSTGRES_USER=perl-mojo \
+    -e POSTGRES_PASSWORD=mypassword \
+    -v ${PWD}/.pg-data:/var/lib/postgresql/data \
+    -v ${PWD}/bin/init-sql:/docker-entrypoint-initdb.d \
+    -d \
+    postgres:16.0
+
+# start up app
+docker run --name perl-mojo-app \
+    --network perl-mojo \
+    -dp 8080:3000 \
+    -v ${PWD}:/usr/src/myapp \
+    perl-mojo
+
+./myapp.pl daemon -m production -l http://*:8080
+```
