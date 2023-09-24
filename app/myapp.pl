@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
 
-use local::lib 'local';
 use Modern::Perl;
-
 use Mojolicious::Lite -signatures;
 
 # Route leading to an action that renders some text
