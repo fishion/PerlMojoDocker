@@ -2,28 +2,13 @@ version: "3.7"
 
 services:
 
-# docker run --name perl-mojo-app \
-#     --network perl-mojo \
-#     -dp 8080:3000 \
-#     -v ${PWD}:/usr/src/myapp \
-#     perl-mojo
-
   app:
     image: perl-mojo
     ports:
-      - 8080:3000
+      - 3000:8080
     volumes:
       - ./app:/usr/src/myapp
-
-# docker run --name perl-mojo-postgresql \
-#     --network perl-mojo \
-#     -p 5432:5432 \
-#     -e POSTGRES_USER=perl-mojo \
-#     -e POSTGRES_PASSWORD=mypassword \
-#     -v ${PWD}/.pg-data:/var/lib/postgresql/data \
-#     -v ${PWD}/bin/init-sql:/docker-entrypoint-initdb.d \
-#     -d \
-#     postgres:16.0
+    command: ["morbo", "./myapp.pl", "daemon", "-m", "production", "-l", "http://*:8080"]
 
   postgresql:
     image: postgres:16.0

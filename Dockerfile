@@ -11,8 +11,9 @@ RUN apt update \
 # RUN cpanm --installdeps -n . # Running with no tests would be faster...
 RUN cpanm --installdeps .
 
-# Run the app 
-CMD [ "morbo", "./myapp.pl", "daemon", \
-      "-m", "production", \
-      "-l", "http://*:3000" \
+# Run the app : https://docs.mojolicious.org/Mojolicious/Command/prefork
+CMD [ "./myapp.pl", "prefork" \
+      , "-w", "4" \
+      , "-m", "production" \
+      , "-l", "http://*:8080" \
     ]
