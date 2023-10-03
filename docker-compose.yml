@@ -8,7 +8,10 @@ services:
       - 3000:8080
     volumes:
       - ./app:/usr/src/myapp
-    command: ["morbo", "./myapp.pl", "daemon", "-m", "production", "-l", "http://*:8080"]
+    command: ["morbo", "./myapp.pl", "daemon",
+      "-m", "production",
+      "-l", "http://*:8080"
+    ]
 
   postgresql:
     image: postgres:16.0
